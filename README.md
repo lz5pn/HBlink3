@@ -1,4 +1,4 @@
-# HBlink
+# HBlink3
 
 In this repository have all needed to build working HBlink3 server. It is based on HBlink3 created by N4IRS and include Parrot server. Also here is HBmonitor created by SP2ONG. THis is complete DMR server with WEB based monitor.
 
