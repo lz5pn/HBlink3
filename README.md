@@ -30,35 +30,57 @@ Because im not creator this software is published without any support. You can u
 Follow next command in terminal to install HBlin and HBmonitor on raspbian buster or Linux Mint:
 
 apt update
+
 apt upgrade
+
 apt dist-upgrade
+
 apt autoremove
+
 apt autoclean
 
 #install hblink
 
 apt install git
+
 apt install python3-distutils
+
 cd /opt/
+
 wget https://bootstrap.pypa.io/get-pip.py
+
 python3 get-pip.py
+
 apt install python3-twisted
+
 apt install python3-bitarray
+
 apt install python3-dev
+
 git clone https://github.com/lz5pn/HBlink
+
 cd /opt/HBlink
+
 mv dmr_utils3 /opt/
+
 mv HBlink3 /opt/
+
 mv HBmonitor /opt/
+
 cd /opt/
+
 rm -r HBlink
 
 cd /opt/dmr_utils3
+
 chmod +x install.sh
+
 ./install.sh
 
 cd /opt/HBlink3
+
 cp hblink-SAMPLE.cfg hblink.cfg
+
 cp rules-SAMPLE.py rules.py
 
 Autostart HBLink:
@@ -79,6 +101,7 @@ WantedBy=multi-user.target
 ------------------------------------------------------------------------------------------------------------------------
 
 systemctl daemon-reload
+
 systemctl enable hblink
 
 
@@ -117,7 +140,9 @@ WantedBy=multi-user.target
 Start Parrot service:
 
 systemctl enable parrot.service
+
 systemctl start parrot.service
+
 systemctl status parrot.service
 
 nano /opt/HBlink3/rules.py
@@ -127,21 +152,29 @@ Test configuration:
 python3 /opt/HBlink3/bridge.py
 
 systemctl start hblink
+
 systemctl status hblink
 
 Install web monitor for HBLink.
 
 cd /opt/HBmonitor
+
 chmod +x install.sh
+
 ./install.sh
+
 cp config_SAMPLE.py config.py
+
 nano /opt/HBmonitor/config.py
 
 Start monitor as system service:
 
 cp utils/hbmon.service /lib/systemd/system/
+
 systemctl enable hbmon
+
 systemctl start hbmon
+
 systemctl status hbmon
 
 forward TCP ports 8080 and 9000 in router firewall
