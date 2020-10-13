@@ -2,11 +2,15 @@
 
 In this repository have all needed to build working HBlink3 server. It is based on HBlink3 created by N4IRS and include Parrot server. Also here is HBmonitor created by SP2ONG. THis is complete DMR server with WEB based monitor.
 
-It allowed communication from DMR radio via Pi-Star via HBlink to another Pi-Star and DMR radio connected to it.
-It allowed communication from DMR radio via Pi-Star via HBlink to BrandMeister server as peer and DMR radios connected to talk groups in BrandMeister server.
-It allowed communication from DMR radio via Pi-Star via HBlink to IPSC2 server as peer and DMR radios connected to talk groups in IPSC2 server.
-It allowed communication from DMR radio via Pi-Star via HBlink to XLX as peer and DMR or D-Star radios connected to XLX.
-It allowed communication from DMR radio via Pi-Star via HBlink to HBlink as peer and DMR radios connected to talk groups in HBlink.
+It allow communication from DMR radio via Pi-Star via HBlink to another Pi-Star and DMR radio connected to it.
+
+It allow communication from DMR radio via Pi-Star via HBlink to BrandMeister server as peer and DMR radios connected to talk groups in BrandMeister server.
+
+It allow communication from DMR radio via Pi-Star via HBlink to IPSC2 server as peer and DMR radios connected to talk groups in IPSC2 server.
+
+It allow communication from DMR radio via Pi-Star via HBlink to XLX as peer and DMR or D-Star radios connected to XLX.
+
+It allow communication from DMR radio via Pi-Star via HBlink to HBlink as peer and DMR radios connected to talk groups in HBlink.
 
 HBlink server also allowed control on traffic. It is possible to setup Talk Group for turn on or off one TG, several TG or all TG. This software provide very good control on DMR traffic, incoming and outgoing to other servers like BrandMeister, IPSC2, XLX and HBlink.
 
