@@ -20,7 +20,7 @@ Originaly this software was created as software for connection between IPSC2 and
 
 This software is very good for small networks of few hotspots or repeater or mix of them. It work very well on Raspberry Pi3 with Raspbian Buster, or on Desktop machine with Linux (tested on Linux Mint)
 
-I do not provide support for this software. If future updates in operating systems make it not working or not possible to be installed, sorry but I'm not going to fix such problems. Use this software on your own risk. If you cause troubles by inapropriate settings or ussage of this software i do not take any responsibility. Everyone who use this software, is responsible for any problems caused in his or other networks.
+I do not provide support for this software. If future updates in operating systems make it not working or not possible to be installed, sorry but I'm not going to fix such problems. Use this software on your own risk. If you cause troubles by inapropriate settings or ussage of this software I do not take any responsibility. Everyone who use this software, is responsible for any problems caused in his or other networks.
 
 Follow the next commands in terminal to install HBlink and HBmonitor on raspbian buster or Linux Mint:
 
