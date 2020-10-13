@@ -52,7 +52,7 @@ apt install python3-bitarray
 
 apt install python3-dev
 
-git clone https://github.com/lz5pn/HBlink
+git clone https://github.com/lz5pn/HBlink3
 
 cd /opt/HBlink
 
