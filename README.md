@@ -12,7 +12,7 @@ It allow communication from DMR radio via Pi-Star via HBlink to XLX as peer and 
 
 It allow communication from DMR radio via Pi-Star via HBlink to HBlink as peer and DMR radios connected to talk groups in HBlink.
 
-HBlink server also allowed control on traffic. It is possible to setup Talk Group for turn on or off one TG, several TG or all TG. This software provide very good control on DMR traffic, incoming and outgoing to other servers like BrandMeister, IPSC2, XLX and HBlink.
+HBlink server also allow control on traffic. It is possible to setup Talk Group for turn on or off one TG, several TG or all TG. This software provide very good control on DMR traffic, incoming and outgoing to other servers like BrandMeister, IPSC2, XLX and HBlink.
 
 Many thanks to N4IRS and SP2ONG for creating such nice software.
 
