@@ -26,5 +26,6 @@ I do not mind that it is good idea.
 Pressure over peoples who make such software and peoples who use such software is unbelievable. 
 So here i publish my copy of this software.
 Will create full instructions how to create HBlink server.
+Because im not creator this software is published without any support. You can use it on your own risk.
 
 73 de LZ5PN
