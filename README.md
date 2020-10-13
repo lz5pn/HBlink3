@@ -1,6 +1,6 @@
 # HBlink
 
-
+In this repository have all needed to build working HBlink3 server. It is based on HBlink3 created by N4IRS and include Parrot server. Also here is HBmonitor created by SP2ONG. THis is complete DMR server with WEB based monitor.
 
 It allowed communication from DMR radio via Pi-Star via HBlink to another Pi-Star and DMR radio connected to it.
 It allowed communication from DMR radio via Pi-Star via HBlink to BrandMeister server as peer and DMR radios connected to talk groups in BrandMeister server.
@@ -8,9 +8,17 @@ It allowed communication from DMR radio via Pi-Star via HBlink to IPSC2 server a
 It allowed communication from DMR radio via Pi-Star via HBlink to XLX as peer and DMR or D-Star radios connected to XLX.
 It allowed communication from DMR radio via Pi-Star via HBlink to HBlink as peer and DMR radios connected to talk groups in HBlink.
 
-Originaly this software was created as software for connection between IPSC2 and BrandMeister
+HBlink server also allowed control on traffic. It is possible to setup Talk Group for turn on or off one TG, several TG or all TG. This software provide very good control on DMR traffic, incoming and outgoing to other servers like BrandMeister, IPSC2, XLX and HBlink.
 
-Follow next command in terminal to install HBlin and HBmonitor on raspbian buster or Linux Mint:
+Many thanks to N4IRS and SP2ONG for creating such nice software.
+
+Originaly this software was created as software for connection between IPSC2 and BrandMeister. Be careful when you use it and create your communication channels. 
+
+This software is very good for small networks of few hotspots or repeater or mix of them. It work very well on Raspberry Pi3 with Raspbian Buster, or on Desktop machine with Linux (tested on Linux Mint)
+
+I do not provide support for this software. If future updates in operating systems make it not working or not possible to be installed, sorry but I'm not going to fix such problems. Use this software on your own risk. If you cause troubles by inapropriate settings or ussage of this software i do not take any responsibility. Everyone who use this software, is responsible for any problems caused in his or other networks.
+
+Follow the next commands in terminal to install HBlink and HBmonitor on raspbian buster or Linux Mint:
 
 apt update
 
