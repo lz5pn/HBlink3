@@ -1,0 +1,5 @@
+#!/bin/bash
+mv /opt/HBmonitor/log/lastheard.log /opt/HBmonitor/log/lastheard.log.save
+/usr/bin/tail -150 /opt/HBmonitor/log/lastheard.log.save > /opt/HBmonitor/log/lastheard.log
+mv /opt/HBmonitor/log/lastheard.log /opt/HBmonitor/log/lastheard.log.save
+/usr/bin/tail -150 /opt/HBmonitor/log/lastheard.log.save > /opt/HBmonitor/log/lastheard.log

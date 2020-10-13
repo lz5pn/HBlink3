@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HBLink monitor</title>
+      <script type="text/javascript">
+         var sock = null;
+         var ellog = null;
+         
+         window.onload = function() {
+            var wsuri;
+            
+            ellog = document.getElementById('log');
+            hblink_table = document.getElementById('hblink');
+            confbridge_table = document.getElementById('bridge');
+            
+            wsuri = "ws://" + window.location.hostname + ":9000";
+
+            
+            if ("WebSocket" in window) {
+               sock = new WebSocket(wsuri);
+            } else if ("MozWebSocket" in window) {
+               sock = new MozWebSocket(wsuri);
+            } else {
+               log("Browser does not support WebSocket!");
+            }
+            
+            if (sock) {
+               sock.onopen = function() {
+                  log("Connected to " + wsuri);
+               }
+               sock.onclose = function(e) {
+                  log("Connection closed (wasClean = " + e.wasClean + ", code = " + e.code + ", reason = '" + e.reason + "')");
+                  hblink_table.innerHTML = "";
+                  confbridge_table.innerHTML = "";
+                  sock = null;
+               }
+               sock.onmessage = function(e) {
+                   var opcode = e.data.slice(0,1);
+                   var message = e.data.slice(1);
+                   if (opcode == "d") {
+                       hblink(message);
+                   } else if (opcode == "b") {
+                       confbridge(message);
+                   } else if (opcode == "l") {
+                       log(message);
+                   } else if (opcode == "q") {
+                       log(message);
+                       hblink_table.innerHTML = "";
+                       confbridge_table.innerHTML = "";
+                   } else {
+                       log("Unknown Message Received: " + message);
+                   }
+               }
+            }
+         };
+         
+         function hblink(_msg) {
+             hblink_table.innerHTML = _msg;
+         };
+         
+         function confbridge(_msg) {
+             confbridge_table.innerHTML = _msg;
+         };
+         
+         function log(_msg) {
+            ellog.innerHTML += _msg + '\n';
+            ellog.scrollTop = ellog.scrollHeight;
+         };
+         
+      </script>
+<style>
+a:link {
+  color: #0066ff;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: #0066ff;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+  text-decoration: underline;
+}
+/* selected link */
+a:active {
+  color: #0066ff;
+  text-decoration: none;
+}
+.tooltip {
+  position: relative;
+  opacity: 1;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 280px;
+  background-color: #6E6E6E;
+  box-shadow: 4px 4px 6px #800000;
+  color: #FFFFFF;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 0;
+  left: 100%
+  opacity: 1;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  right: 100%
+  opacity: 1;
+  visibility: visible;
+}
+.button {
+  background-color: #356244;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 2px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 10px rgba(0,0,0,0.1);
+}
+.link {background-color: #356244;}
+.link:hover {background-color: #3e8e41;}
+
+.dropbtn {
+  background-color: #356244;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 2px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 10px rgba(0,0,0,0.1);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 6px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+table, td, th {border: .5px solid #d0d0d0; padding: 2px; border-collapse: collapse; text-align:center;}
+</style>
+<meta name="description" content="Copyright (c) 2016, 2017, 2018, 2019.The Regents of the K0USY Group. All rights reserved. Version SP2ONG 2019-2020 (v20200721)" />
+   </head>
+<body style="background-color: #f7f7f7;font: 10pt arial, sans-serif;">
+<center><div style="width:1250px; text-align: center; margin-top:5px;">
+<img src="data:image/png;base64,
+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"/>
+</div>
+<div style="width: 1100px;">
+    <p style="text-align:center;"><span style="color:#000;font-size: 18px; font-weight:bold;"><<<system_name>>></span></p>
+    <p style="text-align:center;"><<<timeout_warning>>></p>
+<!-- Buttons HTML code
+<div class="dropdown">
+  <button class="dropbtn">HBLink Servers</button>
+  <div class="dropdown-content">
+    <a target='_blank' href="#">HBLink 1</a>
+    <a target='_blank' href="#">HBLink 2</a>
+  </div>
+</div>
+&nbsp;
+<div class="dropdown">
+  <button class="dropbtn">Reflectors</button>
+  <div class="dropdown-content">
+    <a target='_blank' href="#">YSF Reflector</a>
+    <a target='_blank' href="#">XLX950</a>
+  </div>
+</div>
+&nbsp;
+<a target='_blank' href="#/log.php"><button class="button link">Lastheard</button></a>
+&nbsp;
+-->
+<noscript>You must enable JavaScript</noscript>
+        	<p id="hblink"></p>
+		<p id="bridge"></p>
+</div>
+<!-- LOG monitor -->
+<!--
+<div style="width: 1250px; margin-left:0px;">
+<fieldset style="width: 1200px; margin-left:0px;margin-right:0px;font-size:14px;border-top-left-radius: 10px; border-top-right-radius: 10px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><legend><b><font color="#000">&nbsp;.: Call Log Window :.&nbsp;</font></b></legend>
+         <pre id="log" style="height: 20em; text-align: left; overflow-y: scroll; font-size:13px; background-color: #000000; color:#b1eee9;"></pre>
+</fieldset></div>
+-->
+<!-- TG table -->
+<!--	
+<div style="width: 1100px; margin-left:0px;">
+<fieldset style="box-shadow:0 0 10px #999;background-color:#e0e0e0e0; width:1050px;margin-left:15px;margin-right:15px;font-size:14px;border-top-left-radius: 10px; border-top-right-radius: 10px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<legend><b><font color="#000">&nbsp;.: Talk Group HBLink :.&nbsp;</font></b></legend>
+<table style="margin-top:5px; table-layout:fixed; font: 10pt arial, sans-serif; background-color: #f9f9f9f9;">
+    <tr style=" height: 32px;font: 10pt arial, sans-serif; background-color:#6A7D8E; color:white; border:0;">
+        <th style='width: 150px;'>TG#</th>
+        <th style='width: 80px;'>TS 1</th>
+        <th style='width: 80px;'>TS 2</th>
+        <th style='width: 790px;'>Description</th>
+    </tr>
+   <tr>
+        <td>&nbsp;<b>TG 5</b>&nbsp;</td>
+        <td>&nbsp;<b></b>&nbsp;</td>
+    <td>&nbsp;<b>D | S</b>&nbsp;</td>
+    <td>Talk group XLX132-D D-Star/DMR/C4FM.</td>
+    </tr>
+     <tr>
+        <td>&nbsp;<b>TG 9999</b>&nbsp;</td>
+    <td>&nbsp;<b></b>&nbsp;</td>
+    <td>&nbsp;<b>D | S</b>&nbsp;</td>
+        <td>Echo (Parrot).</td>
+    </tr>
+</table>
+<br>
+<span style="text-align: center;">Hotspot: D - duplex | S - smiplex</span>
+</fieldset></div><br>
+-->  
+<p style="text-align: center;"><span style="text-align: center;">
+    Copyright (c) 2016, 2017, 2018, 2019<br>The Regents of the <a href=http://k0usy.mystrikingly.com/>K0USY Group</a>. All rights reserved.<br><a href=https://github.com/sp2ong/HBmonitor>Version SP2ONG 2019-2020</a>.<br><br></span>
+    <!-- THIS COPYRIGHT NOTICE MUST BE DISPLAYED AS A CONDITION OF THE LICENCE GRANT FOR THIS SOFTWARE. ALL DERIVATEIVES WORKS MUST CARRY THIS NOTICE -->
+    <!-- This is version of HBMonitor SP2ONG 2019-2020 (v20200721)-->
+</p>
+</center>
+</body>
+</html>

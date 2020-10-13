@@ -1,0 +1,17 @@
+[Unit]
+Description=HBMonitor
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+
+After=network-online.target syslog.target
+Wants=network-online.target
+
+[Service]
+StandardOutput=null
+WorkingDirectory=/opt/HBmonitor
+RestartSec=3
+ExecStart=/usr/bin/python3 /opt/HBmonitor/monitor.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

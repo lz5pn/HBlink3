@@ -1,0 +1,106 @@
+{% if _table['SETUP']['LASTHEARD'] == True %}
+{% include 'lastheard.html' %}
+{% endif %}
+<fieldset style="background-color:#e0e0e0e0;text-algin: lef; margin-left:15px;margin-right:15px;font-size:14px;border-top-left-radius: 10px; border-top-right-radius: 10px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+<legend><b><font color="#000">&nbsp;.: HBlink status :.&nbsp;</font></b></legend>
+  {% if _table['MASTERS']|length >0 %}  
+<table style="table-layout:fixed;width:100%; font: 10pt arial, sans-serif">
+    <tr style="font: 10pt arial, sans-serif; background-color:#356244; color:white">
+        <th style='width: 120px;'>HB Protocol<br>Master Systems</th>
+        <th style='width: 160px;'>Callsign (DMR Id)<br>Info</th>
+        <th style='width: 90px;'>Time Connected</th>
+        <th style='width: 40px;'>Slot</th>
+        <th style='width: 50%;'>Source Subscriber</th>
+        <th style='width: 40%;'>Destination</th>
+    </tr>
+
+    {% for _master in _table['MASTERS'] %}    
+
+    <tr style="background-color:#f9f9f9f9;">
+        <td style="font-weight:bold" rowspan="{{ (_table['MASTERS'][_master]['PEERS']|length * 2) +1 }}"> {{_master}}<br><div style="font: 8pt arial, sans-serif">{{_table['MASTERS'][_master]['REPEAT']}}</div></td>
+    </tr>
+    {% for _client, _cdata in _table['MASTERS'][_master]['PEERS'].items() %}
+    <tr style="background-color:#f9f9f9f9;">
+        <td rowspan="2"><div class="tooltip"><b><font color=#0066ff>{{ _cdata['CALLSIGN'] }}</font>
+        </b><span style="font: 8pt arial,sans-serif">(Id: {{ _client }})</span><span class="tooltiptext">
+        <span style="font: 9pt arial,sans-serif;color:#FFFFFF">
+        {% if _cdata['RX_FREQ'] == 'N/A' and _cdata['TX_FREQ'] == 'N/A' %}
+            &nbsp;&nbsp;&nbsp;<b>IP Network</b><br>
+        {% else %} 
+            &nbsp;&nbsp;&nbsp;<b>RX</b>: {{ _cdata['RX_FREQ'] }}<br>
+            &nbsp;&nbsp;&nbsp;<b>TX</b>: {{ _cdata['TX_FREQ'] }}<br>
+        {% endif %}
+         &nbsp;&nbsp;&nbsp;<b>Type/Slot</b>: {{ _cdata['SLOTS'] }}
+        <br>&nbsp;&nbsp;&nbsp;<b>Soft_Ver</b>: {{_cdata['SOFTWARE_ID'] }}
+        <br>&nbsp;&nbsp;&nbsp;<b>Hardware</b>: {{_cdata['PACKAGE_ID'] }}</span></span></div>
+        <br><div style="font: 92% arial,sans-serif; color:#b5651d;font-weight:bold">{{_cdata['LOCATION']}}</div></td>
+        <td style="background-color:#e8ffec;font: 10pt arial, sans-serif;" rowspan="2">{{ _cdata['CONNECTED'] }}</td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[1]['BGCOLOR'] }}; color:#{{ _cdata[1]['COLOR'] }}"><span style="color:#{{ _cdata[1]['COLOR'] if _cdata[1]['BGCOLOR'] == 'ff6347' else 'b70101'}}">TS1</span></td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[1]['BGCOLOR'] }}; color:#{{ _cdata[1]['COLOR'] }}">{{ _cdata[1]['SUB'] }}</td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[1]['BGCOLOR'] }}; color:#{{ _cdata[1]['COLOR'] }}">{{ _cdata[1]['DEST'] }}</td>
+        <tr style="background-color:#f9f9f9f9;">
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[2]['BGCOLOR'] }}; color:#{{ _cdata[2]['COLOR'] }}"><span style="color:#{{ _cdata[2]['COLOR'] if _cdata[2]['BGCOLOR'] == 'ff6347' else '3a4aa6'}}">TS2</span></td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[2]['BGCOLOR'] }}; color:#{{ _cdata[2]['COLOR'] }}">{{ _cdata[2]['SUB'] }}</td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _cdata[2]['BGCOLOR'] }}; color:#{{ _cdata[2]['COLOR'] }}">{{ _cdata[2]['DEST'] }}</td>
+        </tr>
+
+    </tr>    
+    {% endfor %}
+{% endfor %}
+</table>
+ {% else %}
+         <table style='width:100%; font: 13pt arial, sans-serif'>
+             <tr style='border:none; background-color:#f9f9f9f9;'>
+             <td style='border:none;height:60px;'><font color=brown><b><center>Waiting for data from the HBLink server ...</center></b></td>
+             </tr>
+            </table>
+ {% endif %}         
+ {% if _table['PEERS']|length >0 %}
+<br>
+<table style="table-layout:fixed;width:100%; font: 10pt arial, sans-serif">
+    <tr style="font: 10pt arial, sans-serif;  background-color:#4b8c61; color:white">
+        <th style='width: 120px;'>HB Protocol<br>Peer Systems</th>
+        <th style='width: 160px;'>Callsign (DMR Id)<br>Info</th>
+        <th style='width: 90px;'>Connected<br>TX/RX/Lost</th>
+        <th style='width: 42px;'>Slot</th>
+        <th style='width: 50%;'>Source Subscriber</th>
+        <th style='width: 40%;'>Destination</th>
+    </tr>
+    {% for _peer, _pdata  in _table['PEERS'].items() %}
+    <tr style="background-color:#f9f9f9f9;">
+        <td style="font-weight:bold" rowspan="2"> {{ _peer}}<br><span style="font-weight:normal; font: 7pt arial, sans-serif;">Mode: {{ _table['PEERS'][_peer]['MODE'] }}</span></td>
+        <td rowspan="2"><div class="tooltip"><b><font color=#0066ff>{{_table['PEERS'][_peer]['CALLSIGN']}}</font></b><span style="font-weight:normal; font: 8pt arial, sans-serif;">(Id: {{ _table['PEERS'][_peer]['RADIO_ID'] }})</span><span class="tooltiptext">&nbsp;&nbsp;&nbsp;<b>Linked Time Slot: <font color=yellow>{{ _table['PEERS'][_peer]['SLOTS'] }}</font></b></span></div><br><div style="font: 92% arial, sans-serif; color:#b5651d;font-weight:bold">{{_table['PEERS'][_peer]['LOCATION']}}</div></td>
+        <td rowspan="2"; style="font: 9pt arial, sans-serif;{{ 'background-color:#98FB98' if _table['PEERS'][_peer]['STATS']['CONNECTION'] == 'YES' else ';background-color:#ff704d' }}">{{ _table['PEERS'][_peer]['STATS']['CONNECTED'] }}<br><div style="font: 8pt arial, sans-serif">{{ _table['PEERS'][_peer]['STATS']['PINGS_SENT'] }} / {{ _table['PEERS'][_peer]['STATS']['PINGS_ACKD'] }} / {{ _table['PEERS'][_peer]['STATS']['PINGS_SENT'] - _table['PEERS'][_peer]['STATS']['PINGS_ACKD'] }}</div></td>
+        
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[1]['BGCOLOR'] }}; color:#{{ _pdata[1]['COLOR'] }}"><span style="color:#b70101">TS1</span></td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[1]['BGCOLOR'] }}; color:#{{ _pdata[1]['COLOR'] }}">{{ _pdata[1]['SUB'] }}</td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[1]['BGCOLOR'] }}; color:#{{ _pdata[1]['COLOR'] }}">{{ _pdata[1]['DEST'] }}</td>
+        <tr style="background-color:#f9f9f9f9;">
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[2]['BGCOLOR'] }}; color:#{{ _pdata[2]['COLOR'] }}"><span style="color:#{{ _pdata[2]['COLOR'] if _pdata[2]['BGCOLOR'] == 'ff6347' else '3a4aa6'}}">TS2</span></td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[2]['BGCOLOR'] }}; color:#{{ _pdata[2]['COLOR'] }}">{{ _pdata[2]['SUB'] }}</td>
+        <td style="font: 10pt arial, sans-serif;background-color:#{{ _pdata[2]['BGCOLOR'] }}; color:#{{ _pdata[2]['COLOR'] }}">{{ _pdata[2]['DEST'] }}</td>
+        </tr>
+    </tr>
+    {% endfor %}
+</table>
+ {% endif %}
+    {% if _table['OPENBRIDGES']|length >0 %}
+<br>
+<table style="table-layout:fixed;width:100%; font: 10pt arial, sans-serif">
+    <tr style="width:100%; font: 10pt arial, sans-serif; background-color:#12ad2a; color:white">
+        <th style='width: 120px;'>OpenBridge<br>Systems</th>
+        <th style='width: 160px;'>Network ID</th>
+        <th style='width: 100%;'>Active Calls</th>
+    </tr>
+
+    {% for _openbridge in _table['OPENBRIDGES'] %}
+
+    <tr style="background-color:#f9f9f9f9;">
+        <td style="font-weight:bold; padding-left: 20px; text-align:left;"> {{ _openbridge}} </td>
+        <td><div style="font: 9pt arial, sans-serif;margin-top:3px;margin-bottom:3px;">Net ID: <span style="font: 9pt arial, sans-serif;font-weight:bold;">{{ _table['OPENBRIDGES'][_openbridge]['NETWORK_ID'] }}</td>
+        <td style="background-color:#f9f9f9f9; font: 9pt arial, sans-serif; font-weight: 600; color:#0066ff;">{% for entry in _table['OPENBRIDGES'][_openbridge]['STREAMS']  %}(<span style="{{ 'color:#008000;' if _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0] == 'RX' else 'color:red;' }}">{{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0] }}</span>: {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][1] }} >> {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][2] }}) {% endfor %}</td>
+    </tr>
+    {% endfor %}
+</table>
+    {% endif %}
+</fieldset>
