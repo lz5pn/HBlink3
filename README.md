@@ -196,4 +196,7 @@ systemctl status hbmon
 forward TCP ports 8080 and 9000 in router firewall
 
 
+My HBlink http://kario88.dynamic-dns.net:8184/
+
+
 73 de LZ5PN
