@@ -88,16 +88,22 @@ Autostart HBLink:
 nano /lib/systemd/system/hblink.service
 
 Copy and paste the next:
+
 ------------------------------------------------------------------------------------------------------------------------
 [Unit]
+
 Description=Start HBlink
+
 After=multi-user.target
 
 [Service]
+
 ExecStart=/usr/bin/python3 /opt/HBlink3/bridge.py
 
 [Install]
+
 WantedBy=multi-user.target
+
 ------------------------------------------------------------------------------------------------------------------------
 
 systemctl daemon-reload
@@ -119,22 +125,32 @@ To start Parrot service must use file /lib/systemd/system/parrot.service 
 nano /lib/systemd/system/parrot.service
 
 Copy and paste the next:
+
 ------------------------------------------------------------------------------------------------------------------------
 [Unit]
+
 Description=HB bridge all Service
 
 After=network-online.target syslog.target
+
 Wants=network-online.target
 
 [Service]
+
 StandardOutput=null
+
 WorkingDirectory=/opt/HBlink3
+
 RestartSec=3
+
 ExecStart=/usr/bin/python3 /opt/HBlink3/playback.py -c /opt/HBlink3/playback.cfg
+
 Restart=on-abort
 
 [Install]
+
 WantedBy=multi-user.target
+
 ------------------------------------------------------------------------------------------------------------------------
 
 Start Parrot service:
