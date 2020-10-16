@@ -54,17 +54,15 @@ apt install python3-dev
 
 git clone https://github.com/lz5pn/HBlink3
 
-cd /opt/HBlink
+mv /opt/HBlink3/ /opt/backup/
 
-mv dmr_utils3 /opt/
+mv /opt/backup/HBlink3/ /opt/
 
-mv HBlink3 /opt/
+mv /opt/backup/HBmonitor/ /opt/
 
-mv HBmonitor /opt/
+mv /opt/backup/dmr_utils3/ /opt/
 
-cd /opt/
-
-rm -r HBlink
+rm -r /opt/backup/
 
 cd /opt/dmr_utils3
 
