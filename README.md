@@ -158,6 +158,10 @@ systemctl start parrot.service
 
 systemctl status parrot.service
 
+#To create your own configuration edit next two files. Leave them as is just to see if all work as it is expected. After check you can edit this files and add peers and bridges as you want. Advice - do not create bridges between peers. Create bridges only between peers and local masters, where are connected your repeaters or spots. Create bridges between peers can make a lot of headace except admins of servers where are connected your peers are agree with this!
+
+nano /opt/HBlink3/hblink.cfg
+
 nano /opt/HBlink3/rules.py
 
 #Test configuration:
