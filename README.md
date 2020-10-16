@@ -164,6 +164,8 @@ nano /opt/HBlink3/rules.py
 
 python3 /opt/HBlink3/bridge.py
 
+#If it's ok exit with "ctrl-c" and start service
+
 systemctl start hblink
 
 systemctl status hblink
