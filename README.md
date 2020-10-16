@@ -14,7 +14,7 @@ It allow communication from DMR radio via Pi-Star via HBlink to HBlink as peer a
 
 HBlink server also allow control on traffic. It is possible to setup Talk Group for turn on or off one TG, several TG or all TG. This software provide very good control on DMR traffic, incoming and outgoing to other servers like BrandMeister, IPSC2, XLX and HBlink.
 
-Many thanks to N4IRS and SP2ONG for creating such nice software.
+Many thanks to N0MJS, N4IRS and SP2ONG for creating such nice software.
 
 Originaly this software was created as software for connection between IPSC2 and BrandMeister. Be careful when you use it and create your communication channels. 
 
@@ -71,6 +71,10 @@ cd /opt/dmr_utils3
 chmod +x install.sh
 
 ./install.sh
+
+/usr/bin/python3 -m pip install --upgrade pip
+
+pip install --upgrade dmr_utils3
 
 cd /opt/HBlink3
 
