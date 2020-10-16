@@ -22,7 +22,7 @@ This software is very good for small networks of few hotspots or repeater or mix
 
 I do not provide support for this software. If future updates in operating systems make it not working or not possible to be installed, sorry but I'm not going to fix such problems. Use this software on your own risk. If you cause troubles by inapropriate settings or ussage of this software I do not take any responsibility. Everyone who use this software, is responsible for any problems caused in his or other networks.
 
-Follow the next commands in terminal to install HBlink and HBmonitor on raspbian buster or Linux Mint:
+#Follow the next commands in terminal to install HBlink and HBmonitor on raspbian buster or Linux Mint:
 
 apt update
 
