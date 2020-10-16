@@ -84,7 +84,7 @@ cp rules-SAMPLE.py rules.py
 
 nano /lib/systemd/system/hblink.service
 
-Copy and paste the next:
+#Copy and paste the next:
 
 ------------------------------------------------------------------------------------------------------------------------
 [Unit]
@@ -108,20 +108,20 @@ systemctl daemon-reload
 systemctl enable hblink
 
 
-Install Parrot for Echotest:
+# Install Parrot for Echotest:
 
 chmod +x playback.py
 
 
-Create directory for registration files, if /var/log/hblink is not created.
+#Create directory for registration files, if /var/log/hblink is not created.
 
 mkdir /var/log/hblink
 
-To start Parrot service must use file /lib/systemd/system/parrot.service 
+#To start Parrot service must use file /lib/systemd/system/parrot.service 
 
 nano /lib/systemd/system/parrot.service
 
-Copy and paste the next:
+#Copy and paste the next:
 
 ------------------------------------------------------------------------------------------------------------------------
 [Unit]
@@ -150,7 +150,7 @@ WantedBy=multi-user.target
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Start Parrot service:
+#Start Parrot service:
 
 systemctl enable parrot.service
 
@@ -160,7 +160,7 @@ systemctl status parrot.service
 
 nano /opt/HBlink3/rules.py
 
-Test configuration:
+#Test configuration:
 
 python3 /opt/HBlink3/bridge.py
 
@@ -168,7 +168,7 @@ systemctl start hblink
 
 systemctl status hblink
 
-Install web monitor for HBLink.
+# Install web monitor for HBLink.
 
 cd /opt/HBmonitor
 
@@ -180,7 +180,7 @@ cp config_SAMPLE.py config.py
 
 nano /opt/HBmonitor/config.py
 
-Start monitor as system service:
+#Start monitor as system service:
 
 cp utils/hbmon.service /lib/systemd/system/
 
@@ -190,7 +190,7 @@ systemctl start hbmon
 
 systemctl status hbmon
 
-forward TCP ports 8080 and 9000 in router firewall
+# Forward TCP ports 8080 and 9000 in router firewall
 
 
 My HBlink servers: http://kario88.dynamic-dns.net:8184/ and http://lz5pn.freeddns.com:8184/
